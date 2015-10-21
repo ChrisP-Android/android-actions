@@ -1,0 +1,2 @@
+INSTALLED_KERNEL_TARGET := device/actions/lemaker_guitar_rtl8723bs_1080P60/kernel
+INSTALLED_BOOTBIN_DIR := device/actions/lemaker_guitar_rtl8723bs_1080P60/bootbin
