@@ -1095,41 +1095,28 @@
 		ovl_extra {
 			usage = "extra";
 		};
-		
+
 	lcd0: lcd0@b02a0000 {
-		status = "disabled";
-	};
 
-	dsi: dsi@b0220000 {
 		pinctrl-names = "default";
-		pinctrl-0 = <&dsi_state_default>;
-		dsi_power_gpios = <&gpio 126 1>;    /*hr280ac GPIOD30*/
-		dsi_reset_gpios = <&gpio 115 0>;   /*S500 GPIOD19*/	
-		port_type = "dsi";	 
-		data_width = <1>;
-		videomode-0 = <&dsi_mode>;
-		hw-set = <&dsi_reg>;
+		pinctrl-0 = <&lvds_state_default>;
+		lcd_power_gpios = <&gpio 36 0>;    /*GPIOB4*/
+		lcd_reset_gpios = <&gpio 49 0>; /*GPIOB17*/
+		port_type = "lvds";
+		data_width = <0>;		/* 0:24bit ,1:18bit */
+		videomode-0 = <&lcd_mode0>;
+		vsync_inversion = <0>;
+		hsync_inversion = <0>;
 
-		dsi_reg:val{
-			dsi_ctrl = <4944>;
-			dsi_size = <67108864>;
-			dsi_color = <16711680>;
-			dsi_rgbht0 = <461700>;
-			dsi_rgbht1 = <1>;
-			dsi_rgbvt0 = <32588890>;
-			dsi_rgbvt1 = <51>;
-			dsi_pack_cfg = <0>;
-			dsi_pack_header = <2304>;
-			dsi_vedio_cfg = <778>;
-			dsi_phy_t0 = <4699>;
-			dsi_phy_t1 = <6923>;
-			dsi_phy_t2 = <12038>;
-			dsi_phy_ctrl = <64156>;
-			dsi_pin_map = <0x688>;
-			cmu_dsipll_clk = <0x12901>;
-		};
-		
-		dsi_mode:mode@1920x1080p60 {
+		dclk_inversion = <0>;
+		lde_inversion = <0>;
+		lvds_ctl = <0x000a9523>;	/* last two bit: 3:8bit ,1:6bit */
+		lvds_alg_ctl0 = <0xc141a030>;
+		lightness = <128>;
+		saturation = <7>;
+		contrast = <5>;
+
+		lcd_mode0:mode@1920x1080p60 {
 			refresh = <60>;
 			xres = <1920>;
 			yres = <1080>;
@@ -1143,8 +1130,12 @@
 			vsync_len = <10>;
 			/*0: FB_VMODE_NONINTERLACED, 1:FB_VMODE_INTERLACED*/
 			vmode = <0>;
-		};
+                };
 	};
+	dsi: dsi@b0220000 {
+		status = "disabled";
+	};
+
 
 	hdmi:hdmi@b02c0000{
 		hdcp_onoff = <0>;
