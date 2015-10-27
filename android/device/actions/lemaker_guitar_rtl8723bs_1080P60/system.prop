@@ -11,6 +11,7 @@ ro.config.used_hw_vsync = 1
 #force to tabletui: navigatbar move to statubar 
 #ro.config.forcetabletui =1
 
+ro.sf.lcd_density=240
 
 dalvik.vm.dexopt-flags=m=y
 dalvik.vm.checkjni=false
